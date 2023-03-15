@@ -9,5 +9,5 @@ source env/bin/activate
 pip install -r requirements.txt
 
 # Set up the Django project
-#python manage.py migrate
-#python manage.py createsuperuser
+python manage.py migrate
+python manage.py createsuperuser

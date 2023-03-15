@@ -14,6 +14,7 @@ cd ReviewerXperts
 ```
 chmod +x ./setup.sh
 ./setup.sh
+source env/bin/activate
 ```
 
 ### Create a copy of the .env.example file and name it .env:
@@ -28,8 +29,6 @@ python -c 'import secrets; print(secrets.token_hex(32))'
 ```
 
 ### Running the Application
-python manage.py migrate
-python manage.py createsuperuser
 python manage.py runserver
 
 The development server should now be running at http://127.0.0.1:8000/. You can access the admin site at http://127.0.0.1:8000/admin/.
