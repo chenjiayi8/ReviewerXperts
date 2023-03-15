@@ -4,39 +4,49 @@
 
  ## Setup
 
- ### Clone the repository and navigate to the project directory
+ ### How to install virtualenv
+ #### Install pip first
+ ```
+ sudo apt-get install python3-pip
+ ```
+
+ #### Then install virtualenv using pip3
+ ```
+ sudo pip3 install virtualenv
+ ```
+
+ ### Setup the project
+ #### Clone the repository and navigate to the project directory
  ```
 git clone git@github.com:chenjiayi8/ReviewerXperts.git
 cd ReviewerXperts
  ```
 
-### Create a new virtual environment
+#### Create a new virtual environment
 ```
 chmod +x ./setup.sh
 ./setup.sh
-source env/bin/activate
 ```
 
-### Create a copy of the .env.example file and name it .env:
+#### Create a copy of the .env.example file and name it .env:
 ```
 cp .env.example .env
 ```
 
-### Set the SECRET_KEY environment variable in the .env file to a secure random string. 
+#### Set the SECRET_KEY environment variable in the .env file to a secure random string.
 You can generate a new secret key using the following command:
 ```
 python -c 'import secrets; print(secrets.token_hex(32))'
 ```
 
-### Set up the Django project
+#### Set up the Django project
 ```
 python manage.py migrate
 python manage.py createsuperuser
 ```
 
-### Running the Application
+#### Running the Application
 ```
 python manage.py runserver
-```
 
 The development server should now be running at http://127.0.0.1:8000/. You can access the admin site at http://127.0.0.1:8000/admin/.
