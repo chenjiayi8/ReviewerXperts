@@ -29,10 +29,14 @@ python -c 'import secrets; print(secrets.token_hex(32))'
 ```
 
 ### Set up the Django project
+```
 python manage.py migrate
 python manage.py createsuperuser
+```
 
 ### Running the Application
+```
 python manage.py runserver
+```
 
 The development server should now be running at http://127.0.0.1:8000/. You can access the admin site at http://127.0.0.1:8000/admin/.
