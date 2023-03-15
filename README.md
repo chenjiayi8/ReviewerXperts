@@ -28,6 +28,10 @@ You can generate a new secret key using the following command:
 python -c 'import secrets; print(secrets.token_hex(32))'
 ```
 
+### Set up the Django project
+python manage.py migrate
+python manage.py createsuperuser
+
 ### Running the Application
 python manage.py runserver
 
