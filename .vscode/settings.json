@@ -9,7 +9,7 @@
       "**/.DS_Store": true
     },
     "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.formatting.provider": "black",
