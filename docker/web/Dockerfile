@@ -14,7 +14,7 @@ RUN adduser ubuntu -D -u $DOCKER_UID -h /home/ubuntu -s /bin/bash
 WORKDIR /home/ubuntu
 
 # install dependencies
-COPY requirements.txt .
+COPY --chown=ubuntu:ubuntu requirements.txt .
 
 RUN pip install -r requirements.txt --no-cache-dir
 
