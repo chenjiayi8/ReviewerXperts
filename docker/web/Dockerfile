@@ -11,6 +11,14 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # create user ubuntu
 RUN adduser ubuntu -D -u $DOCKER_UID -h /home/ubuntu -s /bin/bash
 
+RUN apk update \
+  && apk add --virtual build-deps gcc python3-dev musl-dev \
+  && apk add --no-cache mariadb-dev
+
+RUN pip install mysqlclient
+
+RUN apk del build-deps
+
 WORKDIR /home/ubuntu
 
 # install dependencies
