@@ -125,3 +125,7 @@ dmypy.json
 .pyre/
 
 docker-compose.override.yml
+
+
+# sync conflict files
+*.sync-conflict-*
