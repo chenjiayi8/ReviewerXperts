@@ -11,22 +11,19 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # create user ubuntu
 RUN adduser ubuntu -D -u $DOCKER_UID -h /home/ubuntu -s /bin/bash
 
+# install dependencies for mysqlclient
 RUN apk update \
   && apk add --virtual build-deps gcc python3-dev musl-dev \
   && apk add --no-cache mariadb-dev
 
-RUN pip install mysqlclient
-
-RUN apk del build-deps
-
 WORKDIR /home/ubuntu
 
-# install dependencies
+# install dependencies for django project
 COPY --chown=ubuntu:ubuntu requirements.txt .
 
 RUN pip install -r requirements.txt --no-cache-dir
 
-RUN pip install gunicorn --no-cache-dir
+RUN apk del build-deps
 
 WORKDIR /var/www/html/app
 
