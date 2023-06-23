@@ -2,6 +2,9 @@
   "editor.fontSize": 14,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.exclude": {
@@ -12,11 +15,16 @@
   "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
+  "python.analysis.extraPaths": ["./env/lib/python3.10/site-packages"],
   "python.formatting.provider": "none",
   "python.formatting.blackArgs": ["--line-length", "79"],
   "python.testing.pytestEnabled": true,
   "git.ignoreLimitWarning": true,
   "[python]": {
-    "editor.defaultFormatter": "ms-python.autopep8"
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
