@@ -14,9 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from rest_framework import routers
+from todo import views
+
+router = routers.DefaultRouter()
+router.register(r'todos', views.TodoView, 'todo')
 
 urlpatterns = [
-    path('topics/', include('topics.urls')),
+    # Add this line
+    path('', views.home_view, name='home'),
+    path('reviewer/', include('reviewer.urls')),
     path('admin/', admin.site.urls),
+    path('api/csrf_token/', views.csrf_token_view, name='csrf_token'),
+    path('api/', include(router.urls)),
+
 ]
