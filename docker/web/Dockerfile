@@ -11,20 +11,15 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # create user ubuntu
 RUN adduser ubuntu -D -u $DOCKER_UID -h /home/ubuntu -s /bin/bash
 
-# install dependencies for mysqlclient
+# install dependencies for mysqlclient and react
 RUN apk update \
-  && apk add --virtual build-deps gcc python3-dev musl-dev \
+  && apk add --virtual build-deps gcc musl-dev \
   && apk add --no-cache mariadb-dev nodejs npm
 
-
-WORKDIR /home/ubuntu
-
-# install dependencies for django project
-COPY --chown=ubuntu:ubuntu ./backend/requirements.txt .
-
-RUN pip install -r requirements.txt --no-cache-dir
-
-RUN apk del build-deps
+# install virtualenv
+RUN pip install virtualenv
+# enviorment variables
+ENV PATH="/var/www/html/app/docker/web/:$PATH"
 
 WORKDIR /var/www/html/app
 
@@ -35,11 +30,11 @@ FROM base as development
 
 USER root
 # install dev dependencies
-RUN apk add --no-cache bash sudo nmap git
+RUN apk add --no-cache bash sudo nmap git nano
 
 # helper command
 RUN echo "alias listening='lsof -i -P -n | grep LISTEN'" >> /home/ubuntu/.bashrc
-ENV PATH="/var/www/html/app/docker/backend/:$PATH"
+RUN echo "alias ll='ls -alFh'" >> /home/ubuntu/.bashrc
 
 # add user ubuntu to sudoers
 RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/ubuntu
