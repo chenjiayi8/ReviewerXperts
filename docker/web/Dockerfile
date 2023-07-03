@@ -32,10 +32,14 @@ USER root
 # install dev dependencies
 RUN apk add --no-cache bash sudo nmap git nano
 
-# helper command
-RUN echo "alias listening='lsof -i -P -n | grep LISTEN'" >> /home/ubuntu/.bashrc
-RUN echo "alias ll='ls -alFh'" >> /home/ubuntu/.bashrc
-
 # add user ubuntu to sudoers
 RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/ubuntu
 RUN chmod 0440 /etc/sudoers.d/ubuntu
+
+RUN npm install -g aicommits
+
+# helper command
+USER ubuntu
+RUN echo "alias listening='lsof -i -P -n | grep LISTEN'" >> /home/ubuntu/.bashrc
+RUN echo "alias ll='ls -alFh'" >> /home/ubuntu/.bashrc
+RUN echo "source env/bin/activate" >> /home/ubuntu/.bashrc
